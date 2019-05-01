@@ -1,1 +1,18 @@
-<fs-component></fs-component>
+<fs-wizard
+  #wizard
+  [config]="config"
+  [(ngModel)]="selected"
+  name="selected">
+</fs-wizard>
+
+<p fxLayout="row" fxLayoutGap="5px">
+  <button mat-raised-button color="primary" (click)="first()">First</button>
+  <button mat-raised-button color="primary" (click)="back()">Back</button>
+  <button mat-raised-button color="primary" (click)="next()">Next</button>
+  <button mat-raised-button color="primary" (click)="last()">Last</button>
+</p>
+
+<fieldset>
+  <legend>Current Step</legend>
+  {{selected}}
+</fieldset>

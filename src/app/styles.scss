@@ -1,0 +1,100 @@
+.fs-wizard {
+  flex-direction: row;
+  box-sizing: border-box;
+  display: flex;
+  position: relative;
+
+  .step {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1 100%;
+    flex: 1 1 100%;
+    max-width: 100%;
+    max-height: 100%;
+    box-sizing: border-box;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+
+    .number {
+      width: 40px;
+      height: 40px;
+      display: inline-block;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+      z-index: 99;
+      position: relative;
+      font-size: 17px;
+      color: #fff;
+      background-color: #F4F4F4;
+      color: #888;
+    }
+
+    .spacer {
+      height: 100%;
+      width: 8px;
+      background: #fff;
+      z-index: 1;
+    }
+
+    &.selected .number {
+      color: #fff;
+    }
+
+    &:last-child {
+      flex: 0;
+    }
+
+    &.past {
+      .number {
+        background-color: #444;
+        color: #fff;
+      }
+    }
+  }
+
+  .label {
+    display: inline-block;
+    background-color: #fff;
+    padding: 0 20px 0 0px;
+    z-index: 99;
+    position: relative;
+    font-size: 14px;
+  }
+
+  &:after {
+    content: '.';
+    display: block;
+    height: 1px;
+    width: 100%;
+    margin: 0px auto;
+    text-indent: -9999px;
+    border-top: 1px solid #efefef;
+    position: absolute;
+    left: 0;
+    top: 50%;
+  }
+}
+
+@mixin fs-wizard($theme) {
+
+  $primary: mat-palette($theme);
+
+  .fs-wizard {
+
+    .step {
+      &.past {
+        .number {
+          background-color: mat-color($primary);
+        }
+      }
+
+      &.selected {
+        .number {
+          background-color: mat-color($primary);
+        }
+      }
+    }
+  }
+}
+
