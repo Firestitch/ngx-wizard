@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input, forwardRef } from '@angular/core';
-import { WizardConfig } from 'src/app/interfaces/wizard-config';
+import { WizardConfig } from '../../interfaces/wizard-config';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { findIndex } from 'lodash-es';
 
