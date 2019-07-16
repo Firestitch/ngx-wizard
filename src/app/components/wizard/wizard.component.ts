@@ -51,7 +51,7 @@ export class FsWizardComponent implements ControlValueAccessor {
 
       if (next) {
         this.stepIndex = index;
-        this.select(next.name);
+        this.select(next.value);
       }
     }
   }
@@ -63,7 +63,7 @@ export class FsWizardComponent implements ControlValueAccessor {
       const back = this.config.steps[this.stepIndex - 1];
 
       if (back) {
-        this.select(back.name);
+        this.select(back.value);
       }
     }
   }
@@ -74,7 +74,7 @@ export class FsWizardComponent implements ControlValueAccessor {
     const step = this.config.steps[this.stepIndex];
 
     if (step) {
-      this.select(step.name);
+      this.select(step.value);
     }
   }
 
@@ -84,13 +84,13 @@ export class FsWizardComponent implements ControlValueAccessor {
     const step = this.config.steps[this.stepIndex];
 
     if (step) {
-      this.select(step.name);
+      this.select(step.value);
     }
   }
 
   private getStepIndex() {
     return findIndex(this.config.steps, (item) => {
-      return item.name === this.selected
+      return item.value === this.selected
     });
   }
 

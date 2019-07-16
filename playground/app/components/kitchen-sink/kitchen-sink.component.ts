@@ -14,23 +14,23 @@ export class KitchenSinkComponent {
 
   @ViewChild('wizard') wizard: FsWizardComponent;
 
-  public selected = 'gender';
+  public selected = 1;
   public config: WizardConfig = {
     steps: [
       {
-        name: 'gender',
+        value: 1,
         label: 'Select Gender'
       },
       {
-        name: 'height',
+        value: { data: 'height' },
         label: 'Select Height'
       },
       {
-        name: 'name',
+        value: 'name',
         label: 'Select Name'
       },
       {
-        name: 'confirmation',
+        value: 'confirmation',
         label: 'Confirmation'
       }
     ]

@@ -1,4 +1,4 @@
 export interface StepConfig {
-  name: string,
+  value: any,
   label?: string
 }
