@@ -15,28 +15,6 @@
     display: flex;
     align-items: center;
 
-    .number {
-      width: 40px;
-      height: 40px;
-      display: inline-block;
-      border-radius: 50%;
-      text-align: center;
-      line-height: 40px;
-      z-index: 1;
-      position: relative;
-      font-size: 17px;
-      color: #fff;
-      background-color: #F4F4F4;
-      color: #888;
-    }
-
-    .spacer {
-      height: 100%;
-      width: 8px;
-      background: #fff;
-      z-index: 1;
-    }
-
     &.selected .number {
       color: #fff;
     }
@@ -51,12 +29,33 @@
         color: #fff;
       }
     }
+
+    .number {
+      width: 40px;
+      height: 40px;
+      display: inline-block;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+      z-index: 1;
+      position: relative;
+      font-size: 17px;
+      background-color: #F4F4F4;
+      color: #888;
+    }
+
+    .spacer {
+      height: 100%;
+      width: 8px;
+      background: #fff;
+      z-index: 1;
+    }
   }
 
   .label {
     display: inline-block;
     background-color: #fff;
-    padding: 0 20px 0 0px;
+    padding: 0 20px 0;
     z-index: 1;
     position: relative;
     font-size: 14px;
@@ -67,7 +66,7 @@
     display: block;
     height: 1px;
     width: 100%;
-    margin: 0px auto;
+    margin: auto;
     text-indent: -9999px;
     border-top: 1px solid #efefef;
     position: absolute;
@@ -76,16 +75,17 @@
   }
 }
 
-@mixin fs-wizard($theme) {
+@mixin fs-wizard($primary-theme, $past-theme) {
 
-  $primary: mat-palette($theme);
+  $primary: mat-palette($primary-theme);
+  $past: mat-palette($past-theme);
 
   .fs-wizard {
 
     .step {
       &.past {
         .number {
-          background-color: mat-color($primary);
+          background-color: mat-color($past);
         }
       }
 
