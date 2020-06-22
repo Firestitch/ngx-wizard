@@ -12,7 +12,7 @@ import { FsWizardComponent } from '@firestitch/package';
 })
 export class KitchenSinkComponent {
 
-  @ViewChild('wizard') wizard: FsWizardComponent;
+  @ViewChild('wizard', { static: true }) wizard: FsWizardComponent;
 
   public selected = 1;
   public config: WizardConfig = {
