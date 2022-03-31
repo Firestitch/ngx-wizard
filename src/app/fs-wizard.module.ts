@@ -15,7 +15,7 @@ import { FsWizardComponent } from './components/wizard/wizard.component';
   ],
 })
 export class FsWizardModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<FsWizardModule> {
     return {
       ngModule: FsWizardModule
     };

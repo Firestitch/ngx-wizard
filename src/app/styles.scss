@@ -1,3 +1,4 @@
+@use '~@angular/material' as mat;
 .fs-wizard {
   flex-direction: row;
   box-sizing: border-box;
@@ -77,21 +78,21 @@
 
 @mixin fs-wizard($primary-theme, $past-theme) {
 
-  $primary: mat-palette($primary-theme);
-  $past: mat-palette($past-theme);
+  $primary: mat.define-palette($primary-theme);
+  $past: mat.define-palette($past-theme);
 
   .fs-wizard {
 
     .step {
       &.past {
         .number {
-          background-color: mat-color($past);
+          background-color: mat.get-color-from-palette($past);
         }
       }
 
       &.selected {
         .number {
-          background-color: mat-color($primary);
+          background-color: mat.get-color-from-palette($primary);
         }
       }
     }
