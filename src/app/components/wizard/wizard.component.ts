@@ -1,6 +1,8 @@
-import { Component, HostBinding, Input, forwardRef } from '@angular/core';
-import { WizardConfig } from '../../interfaces/wizard-config';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, HostBinding, Input, forwardRef, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+
+import { WizardConfig } from '../../interfaces/wizard-config';
+
 import { findIndex } from 'lodash-es';
 
 
@@ -13,7 +15,8 @@ import { findIndex } from 'lodash-es';
       useExisting: forwardRef(() => FsWizardComponent),
       multi: true
     }
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FsWizardComponent implements ControlValueAccessor {
 
@@ -27,22 +30,24 @@ export class FsWizardComponent implements ControlValueAccessor {
   private _onTouched = () => {};
   private _onChange = (value: any) => {};
 
-  constructor() {}
+  constructor(
+    private _cdRef: ChangeDetectorRef,
+  ) {}
 
-  registerOnChange(fn: (value: any) => any): void {
+  public registerOnChange(fn: (value: any) => any): void {
     this._onChange = fn
   }
 
-  registerOnTouched(fn: () => any): void {
+  public registerOnTouched(fn: () => any): void {
     this._onTouched = fn
   }
 
-  writeValue(value: any) {
+  public writeValue(value: any) {
     this.selected = value;
+    this._cdRef.detectChanges();
   }
 
-  next() {
-
+  public next() {
     let index = this.getStepIndex();
 
     if (index >= 0) {
@@ -56,7 +61,7 @@ export class FsWizardComponent implements ControlValueAccessor {
     }
   }
 
-  back() {
+  public back() {
     this.stepIndex = this.getStepIndex();
 
     if (this.stepIndex > 0) {
@@ -68,8 +73,7 @@ export class FsWizardComponent implements ControlValueAccessor {
     }
   }
 
-  first() {
-
+  public first() {
     this.stepIndex = 0;
     const step = this.config.steps[this.stepIndex];
 
@@ -78,8 +82,7 @@ export class FsWizardComponent implements ControlValueAccessor {
     }
   }
 
-  last() {
-
+  public last() {
     this.stepIndex = this.config.steps.length - 1;
     const step = this.config.steps[this.stepIndex];
 
@@ -88,14 +91,15 @@ export class FsWizardComponent implements ControlValueAccessor {
     }
   }
 
-  private getStepIndex() {
-    return findIndex(this.config.steps, (item) => {
-      return item.value === this.selected
-    });
+  public select(name) {
+    this.selected = name;
+    this._cdRef.detectChanges();
+    this._onChange(this.selected);
   }
 
-  private select(name) {
-    this.selected = name;
-    this._onChange(this.selected);
+  private getStepIndex() {
+    return this.config.steps.findIndex((item) => {
+      return item.value === this.selected
+    });
   }
 }
