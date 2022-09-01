@@ -3,12 +3,11 @@ import { Component, HostBinding, Input, forwardRef, ChangeDetectionStrategy, Cha
 
 import { WizardConfig } from '../../interfaces/wizard-config';
 
-import { findIndex } from 'lodash-es';
-
 
 @Component({
   selector: 'fs-wizard',
   templateUrl: 'wizard.component.html',
+  styleUrls: ['wizard.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

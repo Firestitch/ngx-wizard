@@ -1,8 +1,10 @@
 <div
-	class="step"
-	*ngFor="let step of config.steps; let i = index"
-	[ngClass]="{ selected: step.value===selected, past: i < stepIndex }">
-	<div class="number">{{ i + 1 }}</div>
-	<div class="spacer"></div>
+		class="step"
+		*ngFor="let step of config.steps; let i = index"
+		[ngClass]="{ selected: step.value===selected, past: i < stepIndex }">
+	<div class="badge">
+		<div class="number">{{ i + 1 }}</div>
+		<mat-icon class="icon">check</mat-icon>
+	</div>
 	<div class="label" *ngIf="step.label">{{step.label}}</div>
 </div>
