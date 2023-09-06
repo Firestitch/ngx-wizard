@@ -86,7 +86,7 @@
   &.vertical {
     .step {
       flex-direction: column;
-      // align-items: start;
+      align-items: start;
       + .step::before {
         content: none;
         width: 0;
