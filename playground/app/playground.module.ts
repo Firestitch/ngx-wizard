@@ -13,7 +13,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppMaterialModule } from './material.module';
 import {
   KitchenSinkComponent,
-  ExamplesComponent
+  ExamplesComponent,
+  VerticalComponent,
 } from './components';
 import { AppComponent } from './app.component';
 import { KitchenSinkConfigureComponent } from './components/kitchen-sink-configure';
@@ -43,7 +44,8 @@ const routes: Routes = [
     AppComponent,
     ExamplesComponent,
     KitchenSinkComponent,
-    KitchenSinkConfigureComponent
+    KitchenSinkConfigureComponent,
+    VerticalComponent,
   ],
 })
 export class PlaygroundModule {

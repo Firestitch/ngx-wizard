@@ -19,9 +19,19 @@ import { WizardConfig } from '../../interfaces/wizard-config';
 })
 export class FsWizardComponent implements ControlValueAccessor {
 
-  @HostBinding('class.fs-wizard') classFsWizard = true;
+  @Input()
+  public config: WizardConfig = { steps: [] };
 
-  @Input() config: WizardConfig = { steps: [] };
+  @Input()
+  public orientation: 'horizontal' | 'vertical' = 'horizontal';
+
+  @HostBinding('class.fs-wizard')
+  public classFsWizard = true;
+
+  @HostBinding('class.vertical')
+  public get classVertical(): boolean {
+    return this.orientation === 'vertical';
+  }
 
   public selected;
   public stepIndex;
@@ -31,7 +41,7 @@ export class FsWizardComponent implements ControlValueAccessor {
 
   constructor(
     private _cdRef: ChangeDetectorRef,
-  ) {}
+  ) { }
 
   public registerOnChange(fn: (value: any) => any): void {
     this._onChange = fn

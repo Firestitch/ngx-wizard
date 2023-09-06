@@ -4,6 +4,12 @@
   display: flex;
   position: relative;
 
+  .step-wraper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
   .step {
     flex: 1 1 100%;
     max-width: 100%;
@@ -75,6 +81,33 @@
     padding: 0 10px 0 6px;
     z-index: 1;
     position: relative;
+  }
+
+  &.vertical {
+    .step {
+      flex-direction: column;
+      // align-items: start;
+      + .step::before {
+        content: none;
+        width: 0;
+      }
+
+      .step-wraper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .badge-wraper {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          z-index: 2;
+          background-color: #fff;
+        }
+      }
+    }
+    &:after {
+      top: 13px !important;
+    }
   }
 
   &:after {

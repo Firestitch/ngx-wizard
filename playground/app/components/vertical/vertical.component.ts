@@ -6,11 +6,11 @@ import { WizardConfig } from 'src/app/interfaces';
 import { FsWizardComponent } from '@firestitch/package';
 
 @Component({
-  selector: 'kitchen-sink',
-  templateUrl: 'kitchen-sink.component.html',
-  styleUrls: ['kitchen-sink.component.scss']
+  selector: 'vertical',
+  templateUrl: 'vertical.component.html',
+  styleUrls: ['vertical.component.scss']
 })
-export class KitchenSinkComponent {
+export class VerticalComponent {
 
   @ViewChild('wizard', { static: true })
   public wizard: FsWizardComponent;
@@ -57,4 +57,5 @@ export class KitchenSinkComponent {
   last() {
     this.wizard.last();
   }
+
 }
