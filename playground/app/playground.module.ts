@@ -1,23 +1,22 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule, Routes } from '@angular/router';
 
 import { FsExampleModule } from '@firestitch/example';
+import { FsLabelModule } from '@firestitch/label';
 import { FsMessageModule } from '@firestitch/message';
 import { FsWizardModule } from '@firestitch/package';
-import { FsLabelModule } from '@firestitch/label';
-import { ToastrModule } from 'ngx-toastr';
 
-import { AppMaterialModule } from './material.module';
+import { AppComponent } from './app.component';
 import {
-  KitchenSinkComponent,
   ExamplesComponent,
+  KitchenSinkComponent,
   VerticalComponent,
 } from './components';
-import { AppComponent } from './app.component';
 import { KitchenSinkConfigureComponent } from './components/kitchen-sink-configure';
+import { AppMaterialModule } from './material.module';
 
 const routes: Routes = [
   { path: '', component: ExamplesComponent },
@@ -26,16 +25,15 @@ const routes: Routes = [
 @NgModule({
     bootstrap: [AppComponent],
     imports: [
-        BrowserModule,
-        FsWizardModule,
-        BrowserAnimationsModule,
-        AppMaterialModule,
-        FormsModule,
-        FsLabelModule,
-        FsExampleModule.forRoot(),
-        FsMessageModule.forRoot(),
-        ToastrModule.forRoot({ preventDuplicates: true }),
-        RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
+      BrowserModule,
+      FsWizardModule,
+      BrowserAnimationsModule,
+      AppMaterialModule,
+      FormsModule,
+      FsLabelModule,
+      FsExampleModule.forRoot(),
+      FsMessageModule.forRoot(),
+      RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
     ],
     declarations: [
         AppComponent,
