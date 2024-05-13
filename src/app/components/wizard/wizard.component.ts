@@ -1,7 +1,7 @@
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Component, HostBinding, Input, forwardRef, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 
-import { WizardConfig } from '../../interfaces/wizard-config';
+import { StepConfig, WizardConfig } from '../../interfaces';
 
 
 @Component({
@@ -34,7 +34,7 @@ export class FsWizardComponent implements ControlValueAccessor {
   }
 
   public selected;
-  public stepIndex;
+  public stepIndex: number;
 
   private _onTouched = () => {};
   private _onChange = (value: any) => {};
@@ -56,29 +56,27 @@ export class FsWizardComponent implements ControlValueAccessor {
     this._cdRef.detectChanges();
   }
 
+  public getNextStep(): StepConfig {
+    return this.config.steps[this.getStepIndex() + 1] || null;
+  }
+
+  public getBackStep(): StepConfig {
+    return this.config.steps[this.getStepIndex() - 1] || null;
+  }
+
   public next() {
-    let index = this.getStepIndex();
+    let step = this.getNextStep();
 
-    if (index >= 0) {
-      index++;
-      const next = this.config.steps[index];
-
-      if (next) {
-        this.stepIndex = index;
-        this.select(next.value);
-      }
+    if (step) {
+      this.select(step.value);
     }
   }
 
   public back() {
-    this.stepIndex = this.getStepIndex();
+    let step = this.getBackStep();
 
-    if (this.stepIndex > 0) {
-      const back = this.config.steps[this.stepIndex - 1];
-
-      if (back) {
-        this.select(back.value);
-      }
+    if (step) {
+      this.select(step.value);
     }
   }
 
@@ -100,7 +98,9 @@ export class FsWizardComponent implements ControlValueAccessor {
     }
   }
 
-  public select(name) {
+  public select(name: any) {
+    this.stepIndex = this.config.steps
+      .findIndex((step: StepConfig) => step.value === name);
     this.selected = name;
     this._cdRef.detectChanges();
     this._onChange(this.selected);
