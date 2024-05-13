@@ -1,9 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { KitchenSinkConfigureComponent } from '../kitchen-sink-configure';
 import { FsExampleComponent } from '@firestitch/example';
 import { FsMessage } from '@firestitch/message';
-import { WizardConfig } from 'src/app/interfaces';
 import { FsWizardComponent } from '@firestitch/package';
+import { WizardConfig } from 'src/app/interfaces';
 
 @Component({
   selector: 'vertical',
@@ -15,23 +14,23 @@ export class VerticalComponent {
   @ViewChild('wizard', { static: true })
   public wizard: FsWizardComponent;
 
-  public selected = 1;
+  public selected = 'gender';
   public config: WizardConfig = {
     steps: [
       {
-        value: 1,
+        name: 'gender',
         label: 'Select Gender'
       },
       {
-        value: { data: 'height' },
+        name: 'height',
         label: 'Select Height'
       },
       {
-        value: 'name',
+        name: 'name',
         label: 'Select Name'
       },
       {
-        value: 'confirmation',
+        name: 'confirmation',
         label: 'Confirmation'
       }
     ]
