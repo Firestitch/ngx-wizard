@@ -38,8 +38,8 @@ export class KitchenSinkComponent {
     this.wizard.back();
   }
 
-  next() {
-    this.wizard.next();
+ .next(null) {
+    this.wizard.next(null);
   }
 
   first() {

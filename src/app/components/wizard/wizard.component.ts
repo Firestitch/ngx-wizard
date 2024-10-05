@@ -83,7 +83,7 @@ export class FsWizardComponent implements ControlValueAccessor {
     }
   }
 
-  public next() {
+  public.next(null) {
     let step = this.getNextStep();
 
     if (step) {
