@@ -1,13 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
+
 import { FsExampleComponent } from '@firestitch/example';
 import { FsMessage } from '@firestitch/message';
 import { FsWizardComponent } from '@firestitch/package';
+
 import { WizardConfig } from 'src/app/interfaces';
 
 @Component({
   selector: 'vertical',
   templateUrl: 'vertical.component.html',
-  styleUrls: ['vertical.component.scss']
+  styleUrls: ['vertical.component.scss'],
 })
 export class VerticalComponent {
 
@@ -19,21 +21,21 @@ export class VerticalComponent {
     steps: [
       {
         name: 'gender',
-        label: 'Select Gender'
+        label: 'Select Gender',
       },
       {
         name: 'height',
-        label: 'Select Height'
+        label: 'Select Height',
       },
       {
         name: 'name',
-        label: 'Select Name'
+        label: 'Select Name',
       },
       {
         name: 'confirmation',
-        label: 'Confirmation'
-      }
-    ]
+        label: 'Confirmation',
+      },
+    ],
   };
 
   constructor(private exampleComponent: FsExampleComponent,
@@ -45,8 +47,8 @@ export class VerticalComponent {
     this.wizard.back();
   }
 
- .next(null) {
-    this.wizard.next(null);
+  next() {
+    this.wizard.next();
   }
 
   first() {

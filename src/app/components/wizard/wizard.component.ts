@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { StepConfig, WizardConfig } from '../../interfaces';
 
 
@@ -13,8 +13,8 @@ import { StepConfig, WizardConfig } from '../../interfaces';
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => FsWizardComponent),
-      multi: true
-    }
+      multi: true,
+    },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -37,8 +37,8 @@ export class FsWizardComponent implements ControlValueAccessor {
   public selected;
   public stepIndex: number;
 
-  private _onTouched = () => {};
-  private _onChange = (value: any) => {};
+  private _onTouched:  () => void;
+  private _onChange: (value: any) => void;
 
   constructor(
     private _cdRef: ChangeDetectorRef,
@@ -47,11 +47,11 @@ export class FsWizardComponent implements ControlValueAccessor {
   ) { }
 
   public registerOnChange(fn: (value: any) => any): void {
-    this._onChange = fn
+    this._onChange = fn;
   }
 
   public registerOnTouched(fn: () => any): void {
-    this._onTouched = fn
+    this._onTouched = fn;
   }
 
   public writeValue(value: any) {
@@ -68,7 +68,7 @@ export class FsWizardComponent implements ControlValueAccessor {
   }
 
   public navigateNext() {
-    let step = this.getNextStep();
+    const step = this.getNextStep();
 
     if (step) {
       this._router.navigate(step.path, { relativeTo: this._route });
@@ -76,15 +76,15 @@ export class FsWizardComponent implements ControlValueAccessor {
   }
 
   public navigateBack() {
-    let step = this.getBackStep();
+    const step = this.getBackStep();
 
     if (step) {
       this._router.navigate(step.path, { relativeTo: this._route });
     }
   }
 
-  public.next(null) {
-    let step = this.getNextStep();
+  public next() {
+    const step = this.getNextStep();
 
     if (step) {
       this.select(step.name);
@@ -92,7 +92,7 @@ export class FsWizardComponent implements ControlValueAccessor {
   }
 
   public back() {
-    let step = this.getBackStep();
+    const step = this.getBackStep();
 
     if (step) {
       this.select(step.name);
@@ -128,7 +128,7 @@ export class FsWizardComponent implements ControlValueAccessor {
 
   private getStepIndex() {
     return this.config.steps.findIndex((item) => {
-      return item.name === this.selected
+      return item.name === this.selected;
     });
   }
 }

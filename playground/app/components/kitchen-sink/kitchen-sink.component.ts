@@ -1,11 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
+
 import { FsWizardComponent } from '@firestitch/package';
+
 import { WizardConfig } from 'src/app/interfaces';
 
 @Component({
   selector: 'kitchen-sink',
   templateUrl: 'kitchen-sink.component.html',
-  styleUrls: ['kitchen-sink.component.scss']
+  styleUrls: ['kitchen-sink.component.scss'],
 })
 export class KitchenSinkComponent {
 
@@ -17,29 +19,29 @@ export class KitchenSinkComponent {
     steps: [
       {
         name: 'gender',
-        label: 'Select Gender'
+        label: 'Select Gender',
       },
       {
         name: 'height',
-        label: 'Select Height'
+        label: 'Select Height',
       },
       {
         name: 'name',
-        label: 'Select Name'
+        label: 'Select Name',
       },
       {
         name: 'confirmation',
-        label: 'Confirmation'
-      }
-    ]
+        label: 'Confirmation',
+      },
+    ],
   };
 
   back() {
     this.wizard.back();
   }
 
- .next(null) {
-    this.wizard.next(null);
+  next() {
+    this.wizard.next();
   }
 
   first() {
