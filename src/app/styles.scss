@@ -2,20 +2,20 @@
 
 @mixin fs-wizard($primary-theme, $past-theme) {
 
-  $primary: mat.define-palette($primary-theme);
-  $past: mat.define-palette($past-theme);
+  $primary: mat.m2-define-palette($primary-theme);
+  $past: mat.m2-define-palette($past-theme);
 
   .fs-wizard {
     .step {
       &.past {
         .badge {
-          background-color: mat.get-color-from-palette($primary) !important;
+          background-color: mat.m2-get-color-from-palette($primary) !important;
         }
       }
 
       &.selected {
         .badge {
-          background-color: mat.get-color-from-palette($primary) !important;
+          background-color: mat.m2-get-color-from-palette($primary) !important;
         }
       }
     }
