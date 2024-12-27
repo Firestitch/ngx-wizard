@@ -37,7 +37,7 @@ export class FsWizardComponent implements ControlValueAccessor {
   public selected;
   public stepIndex: number;
 
-  private _onTouched:  () => void;
+  private _onTouched: () => void;
   private _onChange: (value: any) => void;
 
   constructor(
@@ -55,7 +55,7 @@ export class FsWizardComponent implements ControlValueAccessor {
   }
 
   public writeValue(value: any) {
-    this.select(value);
+    this.select(value, true);
     this._cdRef.detectChanges();
   }
 
@@ -117,13 +117,16 @@ export class FsWizardComponent implements ControlValueAccessor {
     }
   }
 
-  public select(name: any) {
+  public select(name: any, initial = false) {
     this.stepIndex = this.config.steps
       .findIndex((step: StepConfig) => step.name === name);
 
     this.selected = name;
     this._cdRef.detectChanges();
-    this._onChange(this.selected);
+
+    if (!initial) {
+      this._onChange(this.selected);
+    }
   }
 
   private getStepIndex() {
