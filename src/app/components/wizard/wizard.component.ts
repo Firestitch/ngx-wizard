@@ -1,14 +1,18 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostBinding, Input, forwardRef } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, HostBinding, Input, OnInit, forwardRef, inject } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { StepConfig, WizardConfig } from '../../interfaces';
 
 
 @Component({
   selector: 'fs-wizard',
-  templateUrl: 'wizard.component.html',
-  styleUrls: ['wizard.component.scss'],
+  templateUrl: './wizard.component.html',
+  styleUrls: ['./wizard.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -18,13 +22,16 @@ import { StepConfig, WizardConfig } from '../../interfaces';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FsWizardComponent implements ControlValueAccessor {
+export class FsWizardComponent implements ControlValueAccessor, OnInit {
 
   @Input()
   public config: WizardConfig = { steps: [] };
 
   @Input()
   public orientation: 'horizontal' | 'vertical' = 'horizontal';
+
+  @Input()
+  public maxWidth = '600px';
 
   @HostBinding('class.fs-wizard')
   public classFsWizard = true;
@@ -36,15 +43,27 @@ export class FsWizardComponent implements ControlValueAccessor {
 
   public selected;
   public stepIndex: number;
+  public responsive$: Observable<boolean>;
 
   private _onTouched: () => void;
   private _onChange: (value: any) => void;
+  private _breakpointObserver = inject(BreakpointObserver);
+  private _destroyRef = inject(DestroyRef);
 
   constructor(
     private _cdRef: ChangeDetectorRef,
     private _route: ActivatedRoute,
     private _router: Router,
   ) { }
+
+  public ngOnInit(): void {
+    this.responsive$ = this._breakpointObserver
+      .observe(`(max-width: ${this.maxWidth})`)  
+      .pipe(
+        map((state: BreakpointState) => state.matches),
+        takeUntilDestroyed(this._destroyRef),
+      );
+  }
 
   public registerOnChange(fn: (value: any) => any): void {
     this._onChange = fn;

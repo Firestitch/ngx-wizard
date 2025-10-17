@@ -4,15 +4,36 @@
   [(ngModel)]="selected"
   name="selected">
 </fs-wizard>
-
-<p fxLayout="row" fxLayoutGap="5px">
-  <button mat-raised-button color="primary" (click)="first()">First</button>
-  <button mat-raised-button color="primary" (click)="back()">Back</button>
-  <button mat-raised-button color="primary" (click)="next()">Next</button>
-  <button mat-raised-button color="primary" (click)="last()">Last</button>
-</p>
-
+<br>
+<div class="fs-row.gap-xs">
+  <button
+      mat-stroked-button
+      color="primary"
+      (click)="first()">
+    First
+  </button>
+  <button
+      mat-stroked-button
+      color="primary"
+      (click)="back()">
+    Back
+  </button>
+  <button
+      mat-stroked-button
+      color="primary"
+      (click)="next()">
+    Next
+  </button>
+  <button
+      mat-stroked-button
+      color="primary"
+      (click)="last()">
+    Last
+  </button>
+</div>
 <fieldset>
-  <legend>Current Step</legend>
-  {{selected|json}}
+  <legend>
+    Current Step
+  </legend>
+  {{ selected|json }}
 </fieldset>

@@ -124,8 +124,6 @@
   }
 }
 
-@media screen and (max-width: 599px) {
-  .step:not(.selected) .label {
-    display: none;
-  }
+.step.responsive:not(.selected) .label {
+  display: none;
 }
