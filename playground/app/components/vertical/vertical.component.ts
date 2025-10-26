@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, inject } from '@angular/core';
 
 import { FsExampleComponent } from '@firestitch/example';
 import { FsMessage } from '@firestitch/message';
@@ -23,6 +23,9 @@ import { JsonPipe } from '@angular/common';
     ],
 })
 export class VerticalComponent {
+  private exampleComponent = inject(FsExampleComponent);
+  private message = inject(FsMessage);
+
 
   @ViewChild('wizard', { static: true })
   public wizard: FsWizardComponent;
@@ -48,11 +51,6 @@ export class VerticalComponent {
       },
     ],
   };
-
-  constructor(private exampleComponent: FsExampleComponent,
-              private message: FsMessage) {
-    //exampleComponent.setConfigureComponent(KitchenSinkConfigureComponent, { config: this.config });
-  }
 
   back() {
     this.wizard.back();

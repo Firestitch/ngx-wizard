@@ -31,6 +31,10 @@ import { MatIcon } from '@angular/material/icon';
     ],
 })
 export class FsWizardComponent implements ControlValueAccessor, OnInit {
+  private _cdRef = inject(ChangeDetectorRef);
+  private _route = inject(ActivatedRoute);
+  private _router = inject(Router);
+
 
   @Input()
   public config: WizardConfig = { steps: [] };
@@ -57,12 +61,6 @@ export class FsWizardComponent implements ControlValueAccessor, OnInit {
   private _onChange: (value: any) => void;
   private _breakpointObserver = inject(BreakpointObserver);
   private _destroyRef = inject(DestroyRef);
-
-  constructor(
-    private _cdRef: ChangeDetectorRef,
-    private _route: ActivatedRoute,
-    private _router: Router,
-  ) { }
 
   public ngOnInit(): void {
     this.responsive$ = this._breakpointObserver
