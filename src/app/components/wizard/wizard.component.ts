@@ -7,20 +7,28 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { StepConfig, WizardConfig } from '../../interfaces';
+import { NgClass, AsyncPipe } from '@angular/common';
+import { MatIcon } from '@angular/material/icon';
 
 
 @Component({
-  selector: 'fs-wizard',
-  templateUrl: './wizard.component.html',
-  styleUrls: ['./wizard.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => FsWizardComponent),
-      multi: true,
-    },
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'fs-wizard',
+    templateUrl: './wizard.component.html',
+    styleUrls: ['./wizard.component.scss'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => FsWizardComponent),
+            multi: true,
+        },
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        NgClass,
+        MatIcon,
+        AsyncPipe,
+    ],
 })
 export class FsWizardComponent implements ControlValueAccessor, OnInit {
 

@@ -5,11 +5,22 @@ import { FsMessage } from '@firestitch/message';
 import { FsWizardComponent } from '@firestitch/package';
 
 import { WizardConfig } from 'src/app/interfaces';
+import { FsWizardComponent as FsWizardComponent_1 } from '../../../../src/app/components/wizard/wizard.component';
+import { FormsModule } from '@angular/forms';
+import { MatButton } from '@angular/material/button';
+import { JsonPipe } from '@angular/common';
 
 @Component({
-  selector: 'vertical',
-  templateUrl: 'vertical.component.html',
-  styleUrls: ['vertical.component.scss'],
+    selector: 'vertical',
+    templateUrl: 'vertical.component.html',
+    styleUrls: ['vertical.component.scss'],
+    standalone: true,
+    imports: [
+        FsWizardComponent_1,
+        FormsModule,
+        MatButton,
+        JsonPipe,
+    ],
 })
 export class VerticalComponent {
 

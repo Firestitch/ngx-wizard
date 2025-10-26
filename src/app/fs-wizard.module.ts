@@ -5,17 +5,14 @@ import { FsWizardComponent } from './components/wizard/wizard.component';
 import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
-  imports: [
-    CommonModule,
-
-    MatIconModule,
-  ],
-  exports: [
-    FsWizardComponent,
-  ],
-  declarations: [
-    FsWizardComponent,
-  ],
+    imports: [
+        CommonModule,
+        MatIconModule,
+        FsWizardComponent,
+    ],
+    exports: [
+        FsWizardComponent,
+    ],
 })
 export class FsWizardModule {
   static forRoot(): ModuleWithProviders<FsWizardModule> {
