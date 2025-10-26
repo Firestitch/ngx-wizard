@@ -1,22 +1,25 @@
-<div
+@for (step of config.steps; track step; let i = $index) {
+  <div
     class="step"
-    *ngFor="let step of config.steps; let i = index"
     [ngClass]="{ selected: step.name === selected, past: i < stepIndex, responsive: responsive$ | async }">
-  <div class="step-wraper">
-    <div class="badge-wraper">
-      <div class="badge">
-        <div class="number">
-          {{ i + 1 }}
+    <div class="step-wraper">
+      <div class="badge-wraper">
+        <div class="badge">
+          <div class="number">
+            {{ i + 1 }}
+          </div>
+          <mat-icon class="icon">
+            check
+          </mat-icon>
         </div>
-        <mat-icon class="icon">
-          check
-        </mat-icon>
       </div>
-    </div>
-    <div
-        class="label"
-        *ngIf="step.label">
-      {{ step.label }}
+      @if (step.label) {
+        <div
+          class="label"
+          >
+          {{ step.label }}
+        </div>
+      }
     </div>
   </div>
-</div>
+}
